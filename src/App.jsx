@@ -21,13 +21,22 @@ const App = () => {
         const cityName = query.q ? query.q : 'current location';
         toast.info(`Fetching weather data for ${capitalizeFirstLetter(cityName)}`);
 
-        await getFormattedWeatherData({...query, units}).then((data) =>{
-            toast.success(`Fetched weather data for ${data.name}, ${data.country}`);
-            setWeather(data);
-            console.log(data);
-        });
-        // const data = await getFormattedWeatherData({q: "berlin"});
-        
+        try {
+            await getFormattedWeatherData({...query, units}).then((data) =>{
+              toast.success(`Fetched weather data for ${data.name}, ${data.country}`);
+              setWeather(data);
+              console.log(data);
+          });
+        } catch (error) {
+            toast.error(`Failed to fetch weather data. Please check the city name and try again.`);
+            console.error("Weather data fetch error:", error);
+        }
+
+        // await getFormattedWeatherData({...query, units}).then((data) =>{
+        //     toast.success(`Fetched weather data for ${data.name}, ${data.country}`);
+        //     setWeather(data);
+        //     console.log(data);
+        // });        
   }
 
   useEffect(() => { 
@@ -41,7 +50,6 @@ const App = () => {
     return 'from-yellow-600 to-orange-700';
   }
 
-  // getWeather();
   return (
     <div className={`mx-auto py-5 px-4 md:px-32 bg-gradient-to-br shadow-xl
     shadow-gray-400 ${formatBackground()}`}>

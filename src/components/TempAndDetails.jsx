@@ -36,7 +36,7 @@ const TempAndDetails = ({
             id: 3,
             Icon: FiWind,
             title: "Wind",
-            value: `${speed.toFixed()} ${units === "metric" ? 'km/h':'mph'}`
+            value: `${speed.toFixed()} ${units === "metric" ? 'm/s':'mph'}`
         }
     ]
 
