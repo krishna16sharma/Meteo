@@ -72,7 +72,7 @@ const formattForecastWeather = (secs, offset, data) => {
     .filter(f => f.dt_txt.slice(-8)==="00:00:00") //Get everyday's midnight stats
     .map( f =>({     
         temp: f.main.temp,
-        title: formatToLocalTime(f.dt, offset, 'hh:mm a'),
+        title: formatToLocalTime(f.dt, offset, 'ccc, LLL dd'),
         icon: iconUrlFromCode(f.weather[0].icon),
         date: f.dt_txt,
     })) 

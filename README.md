@@ -1,5 +1,5 @@
 # Meteo
-A website built using React which gives you real-time weather updates.
+A website built using React which gives you real-time weather updates using data from [OpenWeather API](https://openweathermap.org/).
 
 ## How to run
 1. Clone the repository
