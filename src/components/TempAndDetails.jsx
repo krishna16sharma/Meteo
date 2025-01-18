@@ -88,7 +88,7 @@ const TempAndDetails = ({
                 }
             </div>
         </div>
-        <div className="flex flex-row items-center justify-center space-x-6 space-y-3 md:space-y-0 md:space-x-10 text-sm py-3">
+        <div className="flex flex-row flex-wrap items-center justify-center space-x-6 space-y-3 md:space-y-0 md:space-x-10 text-sm py-3">
             {
                 horizontalDetails.map(({id, Icon, title, value})=>(
                     <div key={id} className="flex flex-row items-center">

@@ -13,30 +13,27 @@ const capitalizeFirstLetter = (string) =>{
 
 const App = () => {
   const [query, setQuery] = useState({q: 'bengaluru'})
+  const [coordinates, setCoordinates] = useState({ lat: 12.9716, lon: 77.5946 });
   const [units, setUnits] = useState('metric')
   const [weather, setWeather] = useState(null)
-
 
   const getWeather = async() =>{
         const cityName = query.q ? query.q : 'current location';
         toast.info(`Fetching weather data for ${capitalizeFirstLetter(cityName)}`);
 
         try {
-            await getFormattedWeatherData({...query, units}).then((data) =>{
+            await getFormattedWeatherData({...query, lat: coordinates.lat, lon: coordinates.lon, units}).then((data) =>{
               toast.success(`Fetched weather data for ${data.name}, ${data.country}`);
               setWeather(data);
               console.log(data);
+
+              setCoordinates({ lat: data.lat, lon: data.lon });
           });
         } catch (error) {
             toast.error(`Failed to fetch weather data. Please check the city name and try again.`);
             console.error("Weather data fetch error:", error);
         }
-
-        // await getFormattedWeatherData({...query, units}).then((data) =>{
-        //     toast.success(`Fetched weather data for ${data.name}, ${data.country}`);
-        //     setWeather(data);
-        //     console.log(data);
-        // });        
+       
   }
 
   useEffect(() => { 
@@ -54,7 +51,7 @@ const App = () => {
     <div className={`mx-auto py-5 px-4 md:px-32 bg-gradient-to-br shadow-xl
     shadow-gray-400 ${formatBackground()}`}>
         <TopButtons setQuery={setQuery}/>
-        <Inputs setQuery={setQuery} setUnits={setUnits}/>
+        <Inputs setQuery={setQuery} setUnits={setUnits} formatBackground={formatBackground} coordinates={coordinates} setCoordinates={setCoordinates}/>
 
         {weather && (
             <>
