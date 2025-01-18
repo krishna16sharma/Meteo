@@ -43,7 +43,7 @@
           <div className="flex flex-row w-3/4 items-center justify-center space-x-4">
               <Tooltip text="Optional: Enter in 'City, Countrycode' format for better results">
                 <input type="text" placeholder="Search by city..." 
-                className="text-gray-500 text-xl font-medium p-2 w-full shadow-xl capitalize focus:outline-none
+                className="text-gray-500 text-sm md:text-xl font-medium p-2 w-full shadow-xl capitalize focus:outline-none
                 placeholder:lowercase rounded-2xl" value={city} onChange={(e)=> setCity(e.currentTarget.value)}
                 onKeyDown={handleSearchKey}
                 />
