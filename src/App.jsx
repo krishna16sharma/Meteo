@@ -22,7 +22,7 @@ const App = () => {
         toast.info(`Fetching weather data for ${capitalizeFirstLetter(cityName)}`);
 
         try {
-            await getFormattedWeatherData({...query, units}).then((data) =>{
+            await getFormattedWeatherData({...query, lat: coordinates.lat, lon: coordinates.lon, units}).then((data) =>{
               toast.success(`Fetched weather data for ${data.name}, ${data.country}`);
               setWeather(data);
               console.log(data);
